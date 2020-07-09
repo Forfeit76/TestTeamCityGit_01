@@ -29,14 +29,18 @@ namespace TestTeamCityProgect_01
         [Test]
         public void DataTime_WarningTest()
         {
+            Console.WriteLine("Start test.");
             var startTime = DateTime.Now;
             Console.WriteLine("This is test is worried!");
             System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
             var endTime = DateTime.Now;
-            Warn.If(startTime < endTime);
+            Warn.If(startTime < endTime, "Not important validation.");
+            startTime.Should().BeBefore(endTime, "Very important validation.");
+            Console.WriteLine("Stop test.");
         }
 
         [Test]
+        [Ignore("IGNORE")]
         public void DataTime_FailTest()
         {
             var startTime = DateTime.Now;
